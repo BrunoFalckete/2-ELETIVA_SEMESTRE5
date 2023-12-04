@@ -1,6 +1,8 @@
 from flask import Flask, render_template, request, redirect, url_for, flash, session
 from flask_sqlalchemy import SQLAlchemy
 from werkzeug.security import generate_password_hash, check_password_hash
+from flask import jsonify
+from collections import defaultdict
 
 app = Flask(__name__)
 
@@ -92,7 +94,15 @@ def inserir_conta():
 
 @app.route('/mostrar_grafico')
 def mostrar_grafico():
-    return 'Gráfico mostrado' 
+    contas = Conta.query.all()
+    dados_grafico = defaultdict(lambda: defaultdict(float))
+
+    for conta in contas:
+        ano = conta.data.year
+        mes = conta.data.month
+        dados_grafico[ano][mes] += conta.valor
+
+    return mostrar_grafico
 
 @app.route('/dashboard')
 def dashboard():
