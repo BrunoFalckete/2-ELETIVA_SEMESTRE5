@@ -16,7 +16,7 @@
             <input type="text" id="descricao" name="descricao" required /><br />
 
             <label for="valor">Valor:</label>
-            <input type="number" id="valor" name="valor" required /><br />
+            <input type="text" id="valor" name="valor" required pattern="\d+(\.\d{1,2})?" placeholder="R$: "/><br />
 
             <label for="data">Data:</label>
             <input type="date" id="data" name="data" required /><br />
@@ -34,7 +34,7 @@
             let valor = document.getElementById("valor").value;
             let data = document.getElementById("data").value;
 
-            fetch("/adicionar_conta", {
+            fetch("/inserir_conta", {
                 method: "POST",
                 headers: {
                 "Content-Type": "application/json",
@@ -42,7 +42,7 @@
                 body: JSON.stringify({ descricao, valor, data }),
             }).then((response) => {
                 if (response.ok) {
-                    window.location.href = "/";
+                    window.location.href = "/dashboard";
                 } else {
                 alert("Erro ao inserir conta. Tente novamente.");
                 }

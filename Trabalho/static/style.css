@@ -51,6 +51,10 @@ button:hover {
     background-color: #45a049;
 }
 
+h1 {
+    text-align: center;
+}
+
 /* Add some responsive styles */
 @media screen and (max-width: 600px) {
     form {
