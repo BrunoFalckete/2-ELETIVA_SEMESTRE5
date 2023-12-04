@@ -1,51 +1,53 @@
+<!-- inserir_conta.html -->
 <!DOCTYPE html>
 <html>
-  <head>
-    <title>Inserir conta</title>
-    <link
-      rel="stylesheet"
-      type="text/css"
-      href="{{ url_for('static', filename='style.css') }}"
-    />
-  </head>
-  <body>
-    <h1>Inserir conta</h1>
-    <form id="contaForm">
-      <label for="descricao">Descrição:</label>
-      <input type="text" id="descricao" name="descricao" required /><br />
+    <head>
+        <title>Inserir conta</title>
+        <link
+            rel="stylesheet"
+            type="text/css"
+            href="{{ url_for('static', filename='style.css') }}"
+        />
+    </head>
+    <body>
+        <form id="contaForm">
+            <h1>Inserir conta</h1>
+            <label for="descricao">Descrição:</label>
+            <input type="text" id="descricao" name="descricao" required /><br />
 
-      <label for="valor">Valor:</label>
-      <input type="number" id="valor" name="valor" required /><br />
+            <label for="valor">Valor:</label>
+            <input type="number" id="valor" name="valor" required /><br />
 
-      <label for="data">Data:</label>
-      <input type="date" id="data" name="data" required /><br />
+            <label for="data">Data:</label>
+            <input type="date" id="data" name="data" required /><br />
 
-      <button type="submit">Adicionar</button>
-    </form>
+            <button type="submit">Adicionar</button>
+        </form>
 
-    <script>
-      document
-        .getElementById("contaForm")
-        .addEventListener("submit", function (event) {
-          event.preventDefault();
-          let descricao = document.getElementById("descricao").value;
-          let valor = document.getElementById("valor").value;
-          let data = document.getElementById("data").value;
+        <script>
+            document
+            .getElementById("contaForm")
+            .addEventListener("submit", function (event) {
+            event.preventDefault();
 
-          fetch("/adicionar_conta", {
-            method: "POST",
-            headers: {
-              "Content-Type": "application/json",
-            },
-            body: JSON.stringify({ descricao, valor, data }),
-          }).then((response) => {
-            if (response.ok) {
-              window.location.href = "/";
-            } else {
-              alert("Erro ao inserir conta. Tente novamente.");
-            }
-          });
-        });
-    </script>
-  </body>
+            let descricao = document.getElementById("descricao").value;
+            let valor = document.getElementById("valor").value;
+            let data = document.getElementById("data").value;
+
+            fetch("/adicionar_conta", {
+                method: "POST",
+                headers: {
+                "Content-Type": "application/json",
+                },
+                body: JSON.stringify({ descricao, valor, data }),
+            }).then((response) => {
+                if (response.ok) {
+                    window.location.href = "/";
+                } else {
+                alert("Erro ao inserir conta. Tente novamente.");
+                }
+            });
+            });
+        </script>
+    </body>
 </html>

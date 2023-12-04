@@ -1,26 +1,29 @@
 <!-- dashboard.html -->
 <!DOCTYPE html>
 <html>
-  <head>
-    <title>Dashboard</title>
-    <link
-      rel="stylesheet"
-      type="text/css"
-      href="{{ url_for('static', filename='style.css') }}"
-    />
-  </head>
-  <body>
-    <h1>Lista de Contas</h1>
+    <head>
+        <title>Dashboard</title>
+        <link
+        rel="stylesheet"
+        type="text/css"
+        href="{{ url_for('static', filename='style.css') }}"
+        />
+    </head>
+    <body>
+        <form>
+            <h1>Lista de Contas</h1>
 
-    <ul>
-      {% for conta in contas %}
-      <li>
-        {{ conta.descricao }} - {{ conta.valor }} - {{ conta.data }}
-        <a href="{{ url_for('excluir_conta', conta_id=conta.id) }}">Excluir</a>
-      </li>
-      {% endfor %}
-    </ul>
+            <ul>
+                {% for conta in contas %}
+                    <li>
+                        {{ conta.descricao }} - {{ conta.valor }} - {{ conta.data }}
+                        <a href="{{ url_for('excluir_conta', conta_id=conta.id) }}">Excluir</a>
+                    </li>
+                {% endfor %}
+            </ul>
 
-    <a href="{{ url_for('mostrar_grafico') }}">Mostrar Gráfico por Ano</a>
-  </body>
+            <button type="submit" formaction="{{ url_for('inserir_conta') }}">Inserir Nova Conta</button>
+            <button type="submit" formaction="{{ url_for('mostrar_grafico') }}">Mostrar Gráfico por Ano</button>
+        </form>
+    </body>
 </html>

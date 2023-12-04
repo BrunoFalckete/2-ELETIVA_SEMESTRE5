@@ -11,14 +11,20 @@
   </head>
   <body>
     <form method="POST">
-      {% with messages = get_flashed_messages() %} {% if messages %} {% for
-      message in messages %}
-      <p>{{ message }}</p>
-      {% endfor %} {% endif %} {% endwith %}
+      <h1>Cadastro de Usuário</h1>
       <label for="username">Usuário:</label>
       <input type="text" id="username" name="username" required />
+
       <label for="senha">Senha:</label>
       <input type="password" id="senha" name="senha" required />
+        <!-- Exibição de mensagem de erro -->
+        {% with messages = get_flashed_messages() %} 
+            {% if messages %} 
+                {% for message in messages %}
+                    <p>{{ message }}</p>
+                {% endfor %}
+            {% endif %} 
+        {% endwith %}
       <button type="submit">Cadastrar</button>
     </form>
   </body>

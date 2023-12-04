@@ -86,7 +86,7 @@ def login():
 
 # Rota para adicionar uma nova conta
 @app.route('/inserir_conta', methods=['GET', 'POST'])
-def adicionar_conta():
+def inserir_conta():
     if request.method == 'POST':
         # Obtendo dados do formulário
         descricao = request.form['descricao']
