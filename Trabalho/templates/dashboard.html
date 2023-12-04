@@ -16,7 +16,7 @@
             <ul>
                 {% for conta in contas %}
                     <li>
-                        {{ conta.descricao }} - {{ conta.valor }} - {{ conta.data }}
+                        Descrição: {{ conta.descricao }} / Valor: R${{ conta.valor }} / Data: {{ conta.data }}
                         <a href="{{ url_for('excluir_conta', conta_id=conta.id) }}">Excluir</a>
                     </li>
                 {% endfor %}

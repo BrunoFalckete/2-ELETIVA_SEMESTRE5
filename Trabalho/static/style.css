@@ -11,15 +11,6 @@ body {
     height: 100vh;
 }
 
-form {
-    background-color: #fff;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-    border-radius: 8px;
-    padding: 20px;
-    width: 100%;
-    max-width: 400px;
-}
-
 label {
     display: block;
     margin-bottom: 8px;
@@ -53,6 +44,62 @@ button:hover {
 
 h1 {
     text-align: center;
+}
+
+/* estilização geral do formulário */
+form {
+    width: 80%;
+    margin: 0 auto;
+    padding: 20px;
+    border: 1px solid #ddd;
+    background-color: #f9f9f9;
+    font-family: Arial, sans-serif;
+}
+
+/* estilização do título da lista de contas */
+form h1 {
+    color: #4CAF50;
+    font-size: 24px;
+    margin-bottom: 20px;
+}
+
+/* estilização da lista de contas */
+form ul {
+    list-style-type: none;
+    padding: 0;
+}
+
+/* estilização das linhas da lista de contas */
+form ul li {
+    border: 1px solid #ddd;
+    padding: 10px;
+    margin-bottom: 10px;
+    background-color: #f1f1f1;
+}
+
+/* estilização do link "Excluir" */
+form ul li a {
+    color: #f44336;
+    text-decoration: none;
+    float: right;
+    margin-left: 10px;
+}
+
+/* estilização dos botões de inserir e mostrar gráfico */
+form button[type="submit"] {
+    background-color: #4CAF50;
+    color: white;
+    padding: 10px 20px;
+    margin: 10px 0;
+    border: none;
+    cursor: pointer;
+    width: 100%;
+    opacity: 0.9;
+}
+
+/* estilização dos botões de inserir e mostrar gráfico no hover */
+form button[type="submit"]:hover {
+    opacity: 1;
 }
 
 /* Add some responsive styles */

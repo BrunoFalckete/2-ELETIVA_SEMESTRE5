@@ -4,6 +4,7 @@ from werkzeug.security import generate_password_hash, check_password_hash
 from flask import jsonify
 from collections import defaultdict
 
+
 app = Flask(__name__)
 
 # Configuração do banco de dados SQLite e chave secreta para proteção CSRF
@@ -73,24 +74,30 @@ def login():
     return render_template('login.html')
 
 # Rotas relacionadas à gestão de contas
+from datetime import datetime
+
 @app.route('/inserir_conta', methods=['GET', 'POST'])
 def inserir_conta():
     if request.method == 'POST':
         descricao = request.form.get('descricao')
         valor = request.form.get('valor')
-        data = request.form.get('data')
+        data_str = request.form.get('data')
 
-        # Verifica se todos os campos obrigatórios foram preenchidos
+        # Convert string to datetime
+        data = datetime.strptime(data_str, '%Y-%m-%d')
+
+        # Verifies if all mandatory fields are filled
         if descricao is not None and valor is not None and data is not None:
-            # Criando uma nova conta e adicionando ao banco de dados
+            # Creating a new account and adding it to the database
             conta = Conta(descricao=descricao, valor=valor, data=data, usuario_id=1)
             db.session.add(conta)
             db.session.commit()
             return redirect(url_for('dashboard'))
         else:
-            flash('Todos os campos devem ser preenchidos.')
+            flash('All fields must be filled.')
 
     return render_template('inserir_conta.html')
+
 
 @app.route('/mostrar_grafico')
 def mostrar_grafico():

@@ -10,7 +10,8 @@
         />
     </head>
     <body>
-        <form id="contaForm">
+        <form id="contaForm" method="post">
+
             <h1>Inserir conta</h1>
             <label for="descricao">Descrição:</label>
             <input type="text" id="descricao" name="descricao" required /><br />
@@ -25,28 +26,21 @@
         </form>
 
         <script>
-            document
-            .getElementById("contaForm")
-            .addEventListener("submit", function (event) {
-            event.preventDefault();
+                document.getElementById("contaForm").addEventListener("submit", function (event) {
+                event.preventDefault();
 
-            let descricao = document.getElementById("descricao").value;
-            let valor = document.getElementById("valor").value;
-            let data = document.getElementById("data").value;
+                let formData = new FormData(document.getElementById("contaForm"));
 
-            fetch("/inserir_conta", {
-                method: "POST",
-                headers: {
-                "Content-Type": "application/json",
-                },
-                body: JSON.stringify({ descricao, valor, data }),
-            }).then((response) => {
-                if (response.ok) {
-                    window.location.href = "/dashboard";
-                } else {
-                alert("Erro ao inserir conta. Tente novamente.");
-                }
-            });
+                fetch("/inserir_conta", {
+                    method: "POST",
+                    body: formData,
+                }).then((response) => {
+                    if (response.ok) {
+                        window.location.href = "/dashboard";
+                    } else {
+                        alert("Erro ao inserir conta. Tente novamente.");
+                    }
+                });
             });
         </script>
     </body>
