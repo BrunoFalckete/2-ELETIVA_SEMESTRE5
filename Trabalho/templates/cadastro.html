@@ -1,0 +1,25 @@
+<!-- cadastro.html -->
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Cadastro</title>
+    <link
+      rel="stylesheet"
+      type="text/css"
+      href="{{ url_for('static', filename='style.css') }}"
+    />
+  </head>
+  <body>
+    <form method="POST">
+      {% with messages = get_flashed_messages() %} {% if messages %} {% for
+      message in messages %}
+      <p>{{ message }}</p>
+      {% endfor %} {% endif %} {% endwith %}
+      <label for="username">Usuário:</label>
+      <input type="text" id="username" name="username" required />
+      <label for="senha">Senha:</label>
+      <input type="password" id="senha" name="senha" required />
+      <button type="submit">Cadastrar</button>
+    </form>
+  </body>
+</html>
