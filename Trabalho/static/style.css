@@ -11,7 +11,116 @@ body {
     height: 100vh;
 }
 
+/* styles.css */
+
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background-color: #f4f4f4;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+}
+
 label {
+    display: block;
+    margin-bottom: 8px;
+    font-weight: bold;
+    color: #333;
+}
+
+input {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 15px;
+    box-sizing: border-box;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    font-size: 16px;
+}
+
+button {
+    background-color: #4caf50;
+    color: white;
+    padding: 12px 20px;
+    border: none;
+    border-radius: 5px;
+    font-size: 16px;
+    cursor: pointer;
+}
+
+button:hover {
+    background-color: #45a049;
+}
+
+h1 {
+    text-align: center;
+}
+
+/* estilização geral do formulário */
+form {
+    width: 80%;
+    margin: 0 auto;
+    padding: 20px;
+    border: 1px solid #ddd;
+    background-color: #f9f9f9;
+    font-family: Arial, sans-serif;
+}
+
+/* estilização do título da lista de contas */
+form h1 {
+    color: #4CAF50;
+    font-size: 24px;
+    margin-bottom: 20px;
+}
+
+/* estilização da lista de contas */
+form ul {
+    list-style-type: none;
+    padding: 0;
+}
+
+/* estilização das linhas da lista de contas */
+form ul li {
+    border: 1px solid #ddd;
+    padding: 10px;
+    margin-bottom: 10px;
+    background-color: #f1f1f1;
+}
+
+/* estilização do link "Excluir" */
+form ul li a {
+    color: #f44336;
+    text-decoration: none;
+    float: right;
+    margin-left: 10px;
+}
+
+/* estilização dos botões de inserir e mostrar gráfico */
+form button[type="submit"] {
+    background-color: #4CAF50;
+    color: white;
+    padding: 10px 20px;
+    margin: 10px 0;
+    border: none;
+    cursor: pointer;
+    width: 100%;
+    opacity: 0.9;
+}
+
+/* estilização dos botões de inserir e mostrar gráfico no hover */
+form button[type="submit"]:hover {
+    opacity: 1;
+}
+
+/* Add some responsive styles */
+@media screen and (max-width: 600px) {
+    form {
+        margin: 10px;
+    }
+}label {
     display: block;
     margin-bottom: 8px;
     font-weight: bold;

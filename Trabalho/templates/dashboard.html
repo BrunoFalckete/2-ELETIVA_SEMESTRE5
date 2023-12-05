@@ -3,11 +3,7 @@
 <html>
     <head>
         <title>Dashboard</title>
-        <link
-        rel="stylesheet"
-        type="text/css"
-        href="{{ url_for('static', filename='style.css') }}"
-        />
+        <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='style.css') }}" />
     </head>
     <body>
         <form>
@@ -16,14 +12,14 @@
             <ul>
                 {% for conta in contas %}
                     <li>
-                        Descrição: {{ conta.descricao }} / Valor: R${{ conta.valor }} / Data: {{ conta.data }}
+                        Descrição: {{ conta.descricao }} / Valor: R${{ conta.valor }} / Data: {{ conta.data.strftime('%d/%m/%Y') }}
                         <a href="{{ url_for('excluir_conta', conta_id=conta.id) }}">Excluir</a>
                     </li>
                 {% endfor %}
             </ul>
 
             <button type="submit" formaction="{{ url_for('inserir_conta') }}">Inserir Nova Conta</button>
-            <button type="submit" formaction="{{ url_for('mostrar_grafico') }}">Mostrar Gráfico por Ano</button>
+            <button type="submit" formaction="{{ url_for('mostrar_grafico', ano=2023) }}">Mostrar Gráfico por Ano</button>
         </form>
     </body>
 </html>

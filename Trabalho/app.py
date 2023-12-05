@@ -4,7 +4,6 @@ from werkzeug.security import generate_password_hash, check_password_hash
 from flask import jsonify
 from collections import defaultdict
 
-
 app = Flask(__name__)
 
 # Configuração do banco de dados SQLite e chave secreta para proteção CSRF
@@ -68,7 +67,7 @@ def login():
         user = Usuario.query.filter_by(username=username).first()
 
         if user and user.verificar_senha(senha):
-            session['username'] = username
+            session['id'] = user.id
             return redirect(url_for('dashboard'))
         flash('Login inválido. Verifique seu nome de usuário e senha.')
     return render_template('login.html')
@@ -78,7 +77,7 @@ from datetime import datetime
 
 @app.route('/inserir_conta', methods=['GET', 'POST'])
 def inserir_conta():
-    if request.method == 'POST':
+    if request.method == 'POST' and 'id' in session:
         descricao = request.form.get('descricao')
         valor = request.form.get('valor')
         data_str = request.form.get('data')
@@ -89,7 +88,7 @@ def inserir_conta():
         # Verifies if all mandatory fields are filled
         if descricao is not None and valor is not None and data is not None:
             # Creating a new account and adding it to the database
-            conta = Conta(descricao=descricao, valor=valor, data=data, usuario_id=1)
+            conta = Conta(descricao=descricao, valor=valor, data=data, usuario_id=session['id'])
             db.session.add(conta)
             db.session.commit()
             return redirect(url_for('dashboard'))
@@ -99,24 +98,33 @@ def inserir_conta():
     return render_template('inserir_conta.html')
 
 
-@app.route('/mostrar_grafico')
-def mostrar_grafico():
-    contas = Conta.query.all()
-    dados_grafico = defaultdict(lambda: defaultdict(float))
+@app.route('/mostrar_grafico/<ano>')
+def mostrar_grafico(ano):
+    if 'id' not in session:
+        return redirect(url_for('login'))
+
+    contas = Conta.query.filter_by(usuario_id=session['id']).all()
+    contas_por_mes = {}
 
     for conta in contas:
-        ano = conta.data.year
-        mes = conta.data.month
-        dados_grafico[ano][mes] += conta.valor
+        if conta.data.year != int(ano):
+            continue
 
-    return mostrar_grafico
+        mes = conta.data.month
+        if mes not in contas_por_mes:
+            contas_por_mes[mes] = {'total': 0, 'contas': []}
+
+        contas_por_mes[mes]['total'] += conta.valor
+        contas_por_mes[mes]['contas'].append(conta)
+
+    return render_template('graficos.html', contas_por_mes=contas_por_mes, ano=int(ano))
 
 @app.route('/dashboard')
 def dashboard():
-    if 'username' not in session:
+    if 'id' not in session:
         return redirect(url_for('login'))
     
-    contas = Conta.query.all()
+    contas = Conta.query.filter_by(usuario_id=session['id']).all()
     return render_template('dashboard.html', contas=contas)
 
 @app.route('/excluir_conta/<int:conta_id>')
@@ -124,7 +132,6 @@ def excluir_conta(conta_id):
     conta = Conta.query.get_or_404(conta_id)
     db.session.delete(conta)
     db.session.commit()
-
     return redirect(url_for('dashboard'))
 
 # Função para criar as tabelas no banco de dados
