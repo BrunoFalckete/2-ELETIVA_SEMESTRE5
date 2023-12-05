@@ -1,31 +1,39 @@
 <!-- cadastro.html -->
 <!DOCTYPE html>
 <html>
-  <head>
-    <title>Cadastro</title>
-    <link
-      rel="stylesheet"
-      type="text/css"
-      href="{{ url_for('static', filename='style.css') }}"
-    />
-  </head>
-  <body>
-    <form method="POST">
-      <h1>Cadastro de Usuário</h1>
-      <label for="username">Usuário:</label>
-      <input type="text" id="username" name="username" required />
 
-      <label for="senha">Senha:</label>
-      <input type="password" id="senha" name="senha" required />
-        <!-- Exibição de mensagem de erro -->
-        {% with messages = get_flashed_messages() %} 
-            {% if messages %} 
+<head>
+    <title>Cadastro</title>
+    <!-- Inclui o arquivo de estilo CSS -->
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='style.css') }}" />
+</head>
+
+<body>
+    <!-- Formulário de cadastro de usuário -->
+    <form method="POST">
+        <!-- Título do formulário -->
+        <h1>Cadastro de Usuário</h1>
+
+        <!-- Campo de entrada para o nome de usuário -->
+        <label for="username">Usuário:</label>
+        <input type="text" id="username" name="username" required />
+
+        <!-- Campo de entrada para a senha -->
+        <label for="senha">Senha:</label>
+        <input type="password" id="senha" name="senha" required />
+
+        <!-- Exibição de mensagens de erro (se houver) -->
+        {% with messages = get_flashed_messages() %}
+            {% if messages %}
                 {% for message in messages %}
                     <p>{{ message }}</p>
                 {% endfor %}
-            {% endif %} 
+            {% endif %}
         {% endwith %}
-      <button type="submit">Cadastrar</button>
+
+        <!-- Botão no formulário para cadastrar o usuário -->
+        <button type="submit">Cadastrar</button>
     </form>
-  </body>
+</body>
+
 </html>

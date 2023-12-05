@@ -3,6 +3,7 @@ from flask_sqlalchemy import SQLAlchemy
 from werkzeug.security import generate_password_hash, check_password_hash
 from flask import jsonify
 from collections import defaultdict
+from datetime import datetime
 
 app = Flask(__name__)
 
@@ -73,8 +74,6 @@ def login():
     return render_template('login.html')
 
 # Rotas relacionadas à gestão de contas
-from datetime import datetime
-
 @app.route('/inserir_conta', methods=['GET', 'POST'])
 def inserir_conta():
     if request.method == 'POST' and 'id' in session:
@@ -85,18 +84,17 @@ def inserir_conta():
         # Convert string to datetime
         data = datetime.strptime(data_str, '%Y-%m-%d')
 
-        # Verifies if all mandatory fields are filled
+        # Verifica se todos os campos obrigatórios estão preenchidos
         if descricao is not None and valor is not None and data is not None:
-            # Creating a new account and adding it to the database
+            # Cria uma nova conta e a adiciona ao banco de dados
             conta = Conta(descricao=descricao, valor=valor, data=data, usuario_id=session['id'])
             db.session.add(conta)
             db.session.commit()
             return redirect(url_for('dashboard'))
         else:
-            flash('All fields must be filled.')
+            flash('Todos os campos devem ser preenchidos.')
 
     return render_template('inserir_conta.html')
-
 
 @app.route('/mostrar_grafico/<ano>')
 def mostrar_grafico(ano):

@@ -1,47 +1,58 @@
 <!-- inserir_conta.html -->
 <!DOCTYPE html>
 <html>
-    <head>
-        <title>Inserir conta</title>
-        <link
-            rel="stylesheet"
-            type="text/css"
-            href="{{ url_for('static', filename='style.css') }}"
-        />
-    </head>
-    <body>
-        <form id="contaForm" method="post">
 
-            <h1>Inserir conta</h1>
-            <label for="descricao">Descrição:</label>
-            <input type="text" id="descricao" name="descricao" required /><br />
+<head>
+    <title>Inserir conta</title>
+    <!-- Inclui o arquivo de estilo CSS -->
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='style.css') }}" />
+</head>
 
-            <label for="valor">Valor:</label>
-            <input type="text" id="valor" name="valor" required pattern="\d+(\.\d{1,2})?" placeholder="R$: "/><br />
+<body>
+    <!-- Formulário para inserir uma nova conta -->
+    <form id="contaForm" method="post">
+        <!-- Título do formulário -->
+        <h1>Inserir conta</h1>
 
-            <label for="data">Data:</label>
-            <input type="date" id="data" name="data" required /><br />
+        <!-- Campo de entrada para a descrição da conta -->
+        <label for="descricao">Descrição:</label>
+        <input type="text" id="descricao" name="descricao" required /><br />
 
-            <button type="submit">Adicionar</button>
-        </form>
+        <!-- Campo de entrada para o valor da conta -->
+        <label for="valor">Valor:</label>
+        <input type="text" id="valor" name="valor" required pattern="\d+(\.\d{1,2})?" placeholder="R$: " /><br />
 
-        <script>
-                document.getElementById("contaForm").addEventListener("submit", function (event) {
-                event.preventDefault();
+        <!-- Campo de entrada para a data da conta -->
+        <label for="data">Data:</label>
+        <input type="date" id="data" name="data" required /><br />
 
-                let formData = new FormData(document.getElementById("contaForm"));
+        <!-- Botão para enviar o formulário -->
+        <button type="submit">Adicionar</button>
+    </form>
 
-                fetch("/inserir_conta", {
-                    method: "POST",
-                    body: formData,
-                }).then((response) => {
-                    if (response.ok) {
-                        window.location.href = "/dashboard";
-                    } else {
-                        alert("Erro ao inserir conta. Tente novamente.");
-                    }
-                });
+    <!-- Script para lidar com o envio do formulário via AJAX -->
+    <script>
+        document.getElementById("contaForm").addEventListener("submit", function (event) {
+            event.preventDefault();
+
+            // Obtém os dados do formulário
+            let formData = new FormData(document.getElementById("contaForm"));
+
+            // Envia os dados para a rota de inserção de conta no servidor
+            fetch("/inserir_conta", {
+                method: "POST",
+                body: formData,
+            }).then((response) => {
+                // Redireciona para a página de dashboard se a inserção for bem-sucedida
+                if (response.ok) {
+                    window.location.href = "/dashboard";
+                } else {
+                    // Exibe um alerta em caso de erro
+                    alert("Erro ao inserir conta. Tente novamente.");
+                }
             });
-        </script>
-    </body>
+        });
+    </script>
+</body>
+
 </html>
