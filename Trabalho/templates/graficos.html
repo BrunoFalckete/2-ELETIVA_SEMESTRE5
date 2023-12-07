@@ -11,18 +11,30 @@
 </head>
 
 <body>
-    <div id="">
+    <div class="container">
         <!-- Formulário para mostrar o gráfico -->
-        <form>
+        <form id="chart-form">
             <!-- Título do gráfico com o ano selecionado -->
-            <h1>Gráfico - {{ ano }}</h1>
+            <h1>Gráfico</h1>
 
-            <!-- Links/botões para selecionar o ano do gráfico -->
-            {% for a in range(2023, 2031) %}
-                <a href="{{ url_for('mostrar_grafico', ano=a) }}">
-                    <button type="button">{{ a }}</button>
-                </a>
-            {% endfor %}
+        <p>Ano Selecionado: <span id="anoSelecionado">{{ ano_selecionado }}</span></p>
+
+        <form id="chart-form">
+            <label for="selectAno">Selecione o Ano:</label>
+            <select id="selectAno" onchange="redirecionarParaGrafico()">
+                {% for ano in anos_do_banco_de_dados %}
+                    <option value="{{ ano }}" {% if ano == ano_selecionado %}selected{% endif %}>{{ ano }}</option>
+                {% endfor %}
+            </select>
+        </form>
+
+        <script>
+            function redirecionarParaGrafico() {
+                var select = document.getElementById("selectAno");
+                var anoSelecionado = select.options[select.selectedIndex].value;
+                window.location.href = "/mostrar_grafico/" + anoSelecionado;
+            }
+        </script> 
 
             <!-- Container para o gráfico -->
             <div id="chart"></div>
@@ -132,7 +144,10 @@
         </script>
 
         <!-- Botão para voltar para a página de dashboard -->
-        <a href="{{url_for('dashboard')}}"><button type="button">voltar</button></a>
+        <a href="{{url_for('dashboard')}}" class="back-button">
+            <button type="button">voltar</button>
+        </a>
+
     </div>
 </body>
 

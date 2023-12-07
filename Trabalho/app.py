@@ -104,6 +104,12 @@ def mostrar_grafico(ano):
     contas = Conta.query.filter_by(usuario_id=session['id']).all()
     contas_por_mes = {}
 
+    # Adicionando lógica para obter anos distintos do banco de dados
+    anos_do_banco_de_dados = set(conta.data.year for conta in contas)
+
+    print("Anos do Banco de Dados:", anos_do_banco_de_dados)
+    print("Ano Fornecido na Rota:", ano)
+
     for conta in contas:
         if conta.data.year != int(ano):
             continue
@@ -115,7 +121,10 @@ def mostrar_grafico(ano):
         contas_por_mes[mes]['total'] += conta.valor
         contas_por_mes[mes]['contas'].append(conta)
 
-    return render_template('graficos.html', contas_por_mes=contas_por_mes, ano=int(ano))
+    return render_template('graficos.html', contas_por_mes=contas_por_mes, ano=int(ano), anos_do_banco_de_dados=anos_do_banco_de_dados, ano_selecionado=ano)
+
+
+
 
 @app.route('/dashboard')
 def dashboard():

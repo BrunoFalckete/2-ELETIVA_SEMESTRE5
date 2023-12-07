@@ -1,36 +1,38 @@
 /* Estilos globais */
 body {
+    /* Define a fonte padrão e estilos de layout global */
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-    background-color: #f4f4f4;
-    margin: 0;
-    padding: 0;
-    display: flex;
+    background-color: #f4f4f4; /* Cor de fundo global */
+    margin: 0; /* Remove a margem padrão do corpo */
+    padding: 0; /* Remove o preenchimento padrão do corpo */
+    display: flex; /* Usa o modelo de layout flexível para centralizar vertical e horizontalmente */
     justify-content: center;
     align-items: center;
-    height: 100vh;
+    height: 100vh; /* Ocupa a altura total da viewport */
 }
 
 /* Estilos para rótulos */
 label {
-    display: block;
-    margin-bottom: 8px;
+    display: block; /* Coloca os rótulos em blocos para garantir espaçamento adequado */
+    margin-bottom: 8px; /* Adiciona margem abaixo dos rótulos */
     font-weight: bold;
-    color: #333;
+    color: #333; /* Cor do texto dos rótulos */
 }
 
 /* Estilos para campos de entrada */
 input {
-    width: 100%;
-    padding: 10px;
-    margin-bottom: 15px;
-    box-sizing: border-box;
-    border: 1px solid #ccc;
-    border-radius: 4px;
+    width: 100%; /* Ocupa a largura total do contêiner pai */
+    padding: 10px; /* Espaçamento interno dos campos de entrada */
+    margin-bottom: 15px; /* Adiciona margem abaixo dos campos de entrada */
+    box-sizing: border-box; /* Garante que a largura inclua padding e borda */
+    border: 1px solid #ccc; /* Adiciona uma borda simples */
+    border-radius: 4px; /* Adiciona bordas arredondadas */
     font-size: 16px;
 }
 
 /* Estilos para botões */
 button {
+    /* Estilos básicos para botões */
     background-color: #0394fc;
     color: white;
     padding: 12px 20px;
@@ -41,73 +43,125 @@ button {
 }
 
 button:hover {
-    background-color: #0394fc;
+    background-color: #0394fc; /* Cor de destaque ao passar o mouse */
 }
 
 /* Estilos para títulos */
 h1 {
-    text-align: center;
+    text-align: center; /* Centraliza o texto dos títulos */
 }
 
 /* Estilização geral do formulário */
 form {
-    width: 80%;
-    margin: 0 auto;
-    padding: 20px;
-    border: 1px solid #ddd;
-    background-color: #f9f9f9;
-    font-family: Arial, sans-serif;
+    width: 80%; /* Largura do formulário */
+    margin: 0 auto; /* Centraliza o formulário no eixo horizontal */
+    padding: 20px; /* Espaçamento interno do formulário */
+    border: 1px solid #ddd; /* Adiciona uma borda ao redor do formulário */
+    background-color: #f9f9f9; /* Cor de fundo do formulário */
+    font-family: Arial, sans-serif; /* Fonte do texto do formulário */
 }
 
 /* Estilos para o título da lista de contas */
 form h1 {
-    color: #0394fc;
-    font-size: 24px;
-    margin-bottom: 20px;
+    color: #0394fc; /* Cor do título da lista de contas */
+    font-size: 24px; /* Tamanho da fonte do título da lista de contas */
+    margin-bottom: 20px; /* Adiciona margem abaixo do título */
 }
 
 /* Estilos para a lista de contas */
 form ul {
-    list-style-type: none;
-    padding: 0;
+    list-style-type: none; /* Remove os marcadores da lista */
+    padding: 0; /* Remove o preenchimento padrão da lista */
 }
 
 /* Estilos para as linhas da lista de contas */
 form ul li {
-    border: 1px solid #ddd;
-    padding: 10px;
-    margin-bottom: 10px;
-    background-color: #f1f1f1;
+    border: 1px solid #ddd; /* Adiciona uma borda ao redor de cada item da lista */
+    padding: 10px; /* Espaçamento interno dos itens da lista */
+    margin-bottom: 10px; /* Adiciona margem abaixo de cada item da lista */
+    background-color: #f1f1f1; /* Cor de fundo dos itens da lista */
 }
 
 /* Estilos para o link "Excluir" na lista de contas */
 form ul li a {
-    color: #f44336;
-    text-decoration: none;
-    float: right;
-    margin-left: 10px;
+    color: #f44336; /* Cor do link "Excluir" */
+    text-decoration: none; /* Remove a sublinhado padrão do link */
+    float: right; /* Coloca o link à direita */
+    margin-left: 10px; /* Adiciona margem à esquerda do link */
 }
 
 /* Estilos para os botões de inserir e mostrar gráfico */
 form button[type="submit"] {
-    background-color: #0394fc;
-    color: white;
-    padding: 10px 20px;
-    margin: 10px 0;
-    border: none;
-    cursor: pointer;
-    width: 100%;
-    opacity: 0.9;
+    background-color: #0394fc; /* Cor de fundo do botão de envio */
+    color: white; /* Cor do texto do botão de envio */
+    padding: 10px 20px; /* Espaçamento interno do botão de envio */
+    margin: 10px 0; /* Adiciona margem acima e abaixo do botão de envio */
+    border: none; /* Remove a borda do botão de envio */
+    cursor: pointer; /* Altera o cursor ao passar o mouse sobre o botão de envio */
+    width: 100%; /* Ocupa a largura total do contêiner pai */
+    opacity: 0.9; /* Opacidade do botão de envio */
 }
 
 /* Estilos para os botões de inserir e mostrar gráfico no hover */
 form button[type="submit"]:hover {
-    opacity: 1;
+    opacity: 1; /* Opacidade total ao passar o mouse sobre o botão de envio */
 }
 
 /* Adiciona alguns estilos responsivos */
 @media screen and (max-width: 600px) {
     form {
-        margin: 10px;
+        margin: 10px; /* Adapta a margem do formulário para telas menores */
     }
+}
+
+.container {
+    text-align: center; /* Centraliza o texto dentro da classe .container */
+    width: 80%; /* Ocupa a largura total do contêiner pai */
+}
+
+#chart-form {
+    margin: auto; /* Centraliza o formulário de gráfico no eixo horizontal */
+    text-align: left; /* Alinha o texto dentro do formulário à esquerda */
+}
+
+#chart {
+    margin-top: 20px; /* Adiciona margem acima do gráfico */
+}
+
+.back-button {
+    display: block; /* Exibe o botão como bloco para centralizar no eixo horizontal */
+    margin-top: 20px; /* Adiciona margem acima do botão */
+}
+
+p {
+    text-align: center; /* Centraliza o texto no parágrafo */
+    font-size: 18px; /* Tamanho da fonte */
+    margin-bottom: 10px; /* Adiciona margem abaixo do parágrafo */
+}
+
+#anoSelecionado {
+    font-weight: bold; /* Define o texto em negrito */
+    color: #0394fc; /* Cor do texto para destacar */
+}
+
+/* Estilos para o formulário de gráfico */
+#chart-form {
+    text-align: center; /* Centraliza o conteúdo do formulário */
+    margin-top: 20px; /* Adiciona margem acima do formulário */
+}
+
+label {
+    display: block; /* Coloca os rótulos em blocos para garantir espaçamento adequado */
+    margin-bottom: 8px; /* Adiciona margem abaixo dos rótulos */
+    font-weight: bold;
+    color: #333; /* Cor do texto dos rótulos */
+}
+
+select {
+    width: 100%; /* Ocupa a largura total do contêiner pai */
+    padding: 10px; /* Espaçamento interno do elemento select */
+    border: 1px solid #ccc; /* Adiciona uma borda simples */
+    border-radius: 4px; /* Adiciona bordas arredondadas */
+    font-size: 16px;
+    box-sizing: border-box; /* Garante que a largura inclua padding e borda */
 }
