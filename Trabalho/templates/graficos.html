@@ -19,7 +19,7 @@
 
         <p>Ano Selecionado: <span id="anoSelecionado">{{ ano_selecionado }}</span></p>
 
-        <form id="chart-form">
+        <form>
             <label for="selectAno">Selecione o Ano:</label>
             <select id="selectAno" onchange="redirecionarParaGrafico()">
                 {% for ano in anos_do_banco_de_dados %}

@@ -32,6 +32,8 @@
         <button type="submit" formaction="{{ url_for('inserir_conta') }}">Inserir Nova Conta</button>
         <!-- Botão para mostrar gráfico por ano -->
         <button type="submit" formaction="{{ url_for('mostrar_grafico', ano=2023) }}">Mostrar Gráfico por Ano</button>
+
+        <button type="submit" formaction="{{ url_for('logout') }}" method="post">Logout</button>
     </form>
 </body>
 

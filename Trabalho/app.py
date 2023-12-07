@@ -98,6 +98,8 @@ def inserir_conta():
 
 @app.route('/mostrar_grafico/<ano>')
 def mostrar_grafico(ano):
+    ano = int(ano)
+
     if 'id' not in session:
         return redirect(url_for('login'))
 
@@ -111,7 +113,7 @@ def mostrar_grafico(ano):
     print("Ano Fornecido na Rota:", ano)
 
     for conta in contas:
-        if conta.data.year != int(ano):
+        if conta.data.year != ano:
             continue
 
         mes = conta.data.month
@@ -122,9 +124,6 @@ def mostrar_grafico(ano):
         contas_por_mes[mes]['contas'].append(conta)
 
     return render_template('graficos.html', contas_por_mes=contas_por_mes, ano=int(ano), anos_do_banco_de_dados=anos_do_banco_de_dados, ano_selecionado=ano)
-
-
-
 
 @app.route('/dashboard')
 def dashboard():
@@ -140,6 +139,15 @@ def excluir_conta(conta_id):
     db.session.delete(conta)
     db.session.commit()
     return redirect(url_for('dashboard'))
+
+
+@app.route('/logout', methods=['GET', 'POST'])
+def logout():
+    # Limpe a sessão ou qualquer lógica de logout necessário
+    session.clear()
+
+    # Redirecione para a página de login após o logout
+    return redirect(url_for('login'))
 
 # Função para criar as tabelas no banco de dados
 def create_tables():
